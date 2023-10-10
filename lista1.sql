@@ -69,3 +69,12 @@ SELECT produto,
         ELSE 'Caro'
     END AS categoria_preco
 FROM produtos;
+
+
+CREATE FUNCTION TOTAL_VALOR(preco DECIMAL(10, 2), quantidade INT)
+RETURNS DECIMAL(10, 2)
+BEGIN
+    RETURN preco * quantidade;
+END;
+
+SELECT produto, quantidade, TOTAL_VALOR(preco, quantidade) AS valor_total FROM produtos;
