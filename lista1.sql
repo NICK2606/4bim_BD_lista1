@@ -87,3 +87,38 @@ SELECT produto, MAX(preco) AS produto_mais_caro FROM produtos;
 SELECT produto, MIN(preco) AS produto_mais_barato FROM produtos;
 
 SELECT SUM(IF(quantidade > 0, preco, 0)) AS soma_total_em_estoque FROM produtos;
+
+
+CREATE FUNCTION FATORIAL(n INT)
+RETURNS INT
+BEGIN
+    DECLARE resultado INT DEFAULT 1;
+    DECLARE i INT DEFAULT 1;
+
+    WHILE i <= n DO
+        SET resultado = resultado * i;
+        SET i = i + 1;
+    END WHILE;
+
+    RETURN resultado;
+END;
+
+CREATE FUNCTION EXPONENCIAL(base DECIMAL(10, 2), expoente INT)
+RETURNS DECIMAL(10, 2)
+BEGIN
+    RETURN POWER(base, expoente);
+END;
+
+CREATE FUNCTION E_PALINDROMO(palavra VARCHAR(100))
+RETURNS INT
+BEGIN
+    DECLARE inversa VARCHAR(100);
+
+    SET inversa = REVERSE(palavra);
+
+    IF palavra = inversa THEN
+        RETURN 1; 
+    ELSE
+        RETURN 0;
+    END IF;
+END;
